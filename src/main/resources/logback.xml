@@ -3,7 +3,7 @@
 <configuration scan="true" scanPeriod="60 seconds" debug="true">
 	
 	<property name="appName" value="xsheep"/>
-	<property name="rootPath" value="/logs"/>
+	<property name="logPath" value="/logs"/>
 	<property name="encode" value="UTF-8"/>
 	
 	<contextName>${appName}</contextName>
@@ -15,9 +15,9 @@
 	</appender>
 	
 	<appender name="TRACE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rootPath}/${appName}/all/${appName}-tlog.log</file>
+		<file>${logPath}/${appName}/all/${appName}-tlog.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${rootPath}/${appName}/all/${appName}-tlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${logPath}/${appName}/all/${appName}-tlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
@@ -30,9 +30,9 @@
 	</appender>
 	
 	<appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rootPath}/${appName}/debug/${appName}-dlog.log</file>
+		<file>${logPath}/${appName}/debug/${appName}-dlog.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${rootPath}/${appName}/debug/${appName}-dlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${logPath}/${appName}/debug/${appName}-dlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
@@ -50,9 +50,9 @@
 	</appender>
 	
 	<appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rootPath}/${appName}/info/${appName}-ilog.log</file>
+		<file>${logPath}/${appName}/info/${appName}-ilog.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${rootPath}/${appName}/info/${appName}-ilog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${logPath}/${appName}/info/${appName}-ilog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
@@ -70,9 +70,9 @@
 	</appender>
 	
 	<appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rootPath}/${appName}/warn/${appName}-wlog.log</file>
+		<file>${logPath}/${appName}/warn/${appName}-wlog.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${rootPath}/${appName}/warn/${appName}-wlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${logPath}/${appName}/warn/${appName}-wlog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
@@ -90,9 +90,9 @@
 	</appender>
 	
 	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${rootPath}/${appName}/error/${appName}-elog.log</file>
+		<file>${logPath}/${appName}/error/${appName}-elog.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${rootPath}/${appName}/error/${appName}-elog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+			<fileNamePattern>${logPath}/${appName}/error/${appName}-elog-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<maxFileSize>10MB</maxFileSize>
