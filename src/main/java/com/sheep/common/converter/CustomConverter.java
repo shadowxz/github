@@ -13,6 +13,15 @@ import java.util.Map;
 
 import com.sheep.common.utils.StringUtil;
 
+/**
+ * CustomConverter
+ * <p/>
+ * x
+ * 
+ * @author xiejianqiao
+ * @Timestamp 2015年7月31日 下午2:40:36
+ * @version 1.0
+ */
 public class CustomConverter {
 	
 	/**
