@@ -19,7 +19,7 @@ import com.sheep.common.utils.StringUtil;
  * obj->Map;Map->obj
  * 
  * @author xiejianqiao
- * @Timestamp 2015年7月31日 下午2:38:06
+ * @Timestamp 2015年7月31日 下午2:40:36
  * @version 1.0
  */
 public class CustomConverter {
