@@ -13,7 +13,7 @@ import com.sheep.web.bo.XmlRoot;
 
 @RestController
 @RequestMapping({"/test"})
-public class MVController implements IBaseController{
+public class MVController {
 	
 	private static final Logger logger = LoggerFactory.getLogger();
 	

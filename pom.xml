@@ -9,7 +9,7 @@
 	<properties>
 		<war.finalname>xsheep</war.finalname>
 		<junit.version>4.9</junit.version>
-		<jdk.version>1.6</jdk.version>
+		<jdk.version>1.7</jdk.version>
 		<shiro.version>1.2.2</shiro.version>
 		<quartz.version>1.8.5</quartz.version>
 	</properties>
@@ -99,11 +99,11 @@
 			<version>1.1.2</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>tomcat</groupId>
 			<artifactId>servlets-ssi</artifactId>
 			<version>5.0.16</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
