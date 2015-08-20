@@ -410,4 +410,16 @@
 		</pluginManagement>
 
 	</build>
+	
+	<!-- // -->
+	<developers>
+		<developer>
+			<name>xDemon</name>
+			<email>287988155@qq.com</email>
+			<url>http://user.qzone.qq.com/287988155</url>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
 </project>
