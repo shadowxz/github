@@ -1,8 +1,14 @@
 package com.sheeps.test;
 
+/**
+ * git
+ * 
+ * @author admin
+ * @Date 2015-8-21 17:30:56
+ */
 public class Java {
 	
-	private String j = "j";
+	private String a = "a";
 	
 	public static void main(String[] args) {
 		
@@ -10,9 +16,15 @@ public class Java {
 		
 	}
 	
+	
 	class A{
 		public A(){
-			System.out.println(j);
+			System.out.println(a);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return super.toString();
 	}
 }
