@@ -3,10 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
 	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd 
-	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+	
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
+	<!-- 任务调度器  -->
+	<task:scheduler id="scheduler" pool-size="10"/>
+	<!-- 任务执行器  -->
+	<task:executor id="executor" pool-size="30"/>
+	<!-- 开启注解调度支持 @Async @Scheduled -->
+	<task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true"/>
 	
 	<!-- bean工厂后置处理器,替换属性值
 	<context:property-placeholder location="classpath:app_config/properties/init.config.properties"/>
@@ -26,7 +37,7 @@
 <!-- 	<import resource="classpath:app_config/mybatis/spring-mybatis.xml" /> -->
 	<import resource="classpath:app_config/cache/spring-ehcache.xml"></import>
     
-    <context:component-scan base-package="com.sheep.web">
+    <context:component-scan base-package="com.sheep.web;com.sheeps.annotation">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
     

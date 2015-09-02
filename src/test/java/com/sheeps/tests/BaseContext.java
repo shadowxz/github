@@ -13,7 +13,7 @@ import com.sheep.common.log.LoggerFactory;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath*:app_config/web/spring-*.xml"})
+@ContextConfiguration(locations={"classpath*:app_config/context/spring-*.xml"})
 @TransactionConfiguration(transactionManager="transactionManager")
 public class BaseContext {
 	
