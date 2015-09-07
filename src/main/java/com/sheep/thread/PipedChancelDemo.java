@@ -1,4 +1,4 @@
-package com.sheep.test;
+package com.sheep.thread;
 
 import java.io.IOException;
 import java.io.PipedReader;

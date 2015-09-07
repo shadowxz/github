@@ -1,4 +1,4 @@
-package com.sheep.test;
+package com.sheep.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -1,4 +1,4 @@
-package com.sheep.test;
+package com.sheep.thread;
 
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;

@@ -1,5 +1,7 @@
 package com.sheeps.test;
 
+import java.sql.Timestamp;
+
 /**
  * git
  * 
@@ -13,7 +15,8 @@ public class Java {
 	public static void main(String[] args) {
 		
 		System.out.println("corp branch merge master" );
-		
+		System.out.println();
+		System.out.println(new Timestamp(System.nanoTime()/1000000));
 	}
 	
 	

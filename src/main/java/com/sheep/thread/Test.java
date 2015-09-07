@@ -1,4 +1,4 @@
-package com.sheep.test;
+package com.sheep.thread;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
