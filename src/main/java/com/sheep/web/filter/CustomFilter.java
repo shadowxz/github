@@ -31,6 +31,7 @@ public class CustomFilter implements Filter {
 		logger.trace("CustomFilter doFilter before ...");
 		chain.doFilter(request, response);
 		logger.trace("CustomFilter doFilter after ...");
+		
 	}
 	
 	public void destroy() {
