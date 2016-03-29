@@ -27,30 +27,30 @@ import com.sheep.common.log.LoggerFactory;
  */
 @HandlesTypes(value = { CustomServlet.class })
 public class CustomServletContainerInitializer implements
-		ServletContainerInitializer,ServletContextListener {
+        ServletContainerInitializer,ServletContextListener {
 
-	private static final Logger logger = LoggerFactory.getLogger();
-	
-	public void onStartup(Set<Class<?>> c, ServletContext ctx)
-			throws ServletException {
-		logger.trace("===============================xsheep onStartup=============================");
-		for (Class<?> clazz : c) {
-			logger.debug(clazz.toString());
-		}
-		
-		logger.debug(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE+" : "+ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE).toString());
-	}
+    private static final Logger logger = LoggerFactory.getLogger();
+    
+    public void onStartup(Set<Class<?>> c, ServletContext ctx)
+            throws ServletException {
+        logger.trace("===============================xsheep onStartup=============================");
+        for (Class<?> clazz : c) {
+            logger.debug(clazz.toString());
+        }
+        
+        logger.debug(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE+" : "+ctx.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE).toString());
+    }
 
-	@Override
-	public void contextInitialized(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        // TODO Auto-generated method stub
+        
+    }
 
-	@Override
-	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        // TODO Auto-generated method stub
+        
+    }
 
 }

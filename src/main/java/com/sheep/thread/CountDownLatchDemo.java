@@ -19,87 +19,87 @@ import java.util.concurrent.TimeUnit;
  * @since     [产品/模块版本]
  */
 public class CountDownLatchDemo {
-	
-	static final int SIZE = 100;
-	
-	public static void main(String[] args) {
-		
-		ExecutorService es = Executors.newCachedThreadPool();
-		CountDownLatch latch = new CountDownLatch(SIZE);
-		for (int i = 0; i < 10; i++) {
-			es.execute(new WaitingTask(latch));
-		}
-		
-		for (int i = 0; i < SIZE; i++) {
-			es.execute(new TaskPortion(latch));
-		}
-		System.out.println("Launched all tasks ...");
-		es.shutdown();
-		
-	}
+    
+    static final int SIZE = 100;
+    
+    public static void main(String[] args) {
+        
+        ExecutorService es = Executors.newCachedThreadPool();
+        CountDownLatch latch = new CountDownLatch(SIZE);
+        for (int i = 0; i < 10; i++) {
+            es.execute(new WaitingTask(latch));
+        }
+        
+        for (int i = 0; i < SIZE; i++) {
+            es.execute(new TaskPortion(latch));
+        }
+        System.out.println("Launched all tasks ...");
+        es.shutdown();
+        
+    }
 }
 
 class TaskPortion implements Runnable {
 
-	private static int counter = 0;
-	
-	private final int id = counter++;
-	
-	private static Random rand = new Random(47);
-	
-	private final CountDownLatch latch;
-	
-	public TaskPortion(CountDownLatch  latch){
-		this.latch = latch;
-	}
-	
-	@Override
-	public void run() {
-		try {
-			doWork();
-			latch.countDown();
-		} catch (Exception e) {
-			
-		}
-	}
+    private static int counter = 0;
+    
+    private final int id = counter++;
+    
+    private static Random rand = new Random(47);
+    
+    private final CountDownLatch latch;
+    
+    public TaskPortion(CountDownLatch  latch){
+        this.latch = latch;
+    }
+    
+    @Override
+    public void run() {
+        try {
+            doWork();
+            latch.countDown();
+        } catch (Exception e) {
+            
+        }
+    }
 
-	public void doWork() throws InterruptedException {
-		
-		TimeUnit.MILLISECONDS.sleep(rand.nextInt(2000));
-		System.out.println(this + " completed");
-		
-	}
-	
-	public String toString(){
-		return String.format("%1$-3d", id);
-	}
+    public void doWork() throws InterruptedException {
+        
+        TimeUnit.MILLISECONDS.sleep(rand.nextInt(2000));
+        System.out.println(this + " completed");
+        
+    }
+    
+    public String toString(){
+        return String.format("%1$-3d", id);
+    }
 
 }
 
 
 class WaitingTask implements Runnable {
 
-	private static int counter = 0;
-	
-	private final int id = counter++;
-	
-	private final CountDownLatch latch;
-	
-	public WaitingTask(CountDownLatch  latch){
-		this.latch = latch;
-	}
-	
-	public void run() {
-		try {
-			latch.await();
-			System.out.println("Latch barrier passed for " + this);
-		} catch (Exception e) {
-			System.out.println(this + " interrupted ...");
-		}
-	}
-	
-	public String toString(){
-		return String.format("WaitingTask %1$-3d", id);
-	}
+    private static int counter = 0;
+    
+    private final int id = counter++;
+    
+    private final CountDownLatch latch;
+    
+    public WaitingTask(CountDownLatch  latch){
+        this.latch = latch;
+    }
+    
+    public void run() {
+        try {
+            latch.await();
+            System.out.println("Latch barrier passed for " + this);
+        } catch (Exception e) {
+            System.out.println(this + " interrupted ...");
+        }
+    }
+    
+    public String toString(){
+        return String.format("WaitingTask %1$-3d", id);
+    }
 
 }

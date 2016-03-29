@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	this is xsheep index.jsp ...
+    this is xsheep index.jsp ...
 </body>
 </html>

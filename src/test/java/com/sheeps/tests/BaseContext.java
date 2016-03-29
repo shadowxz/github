@@ -16,16 +16,16 @@ import com.sheep.common.log.LoggerFactory;
 @ContextConfiguration(locations={"classpath*:app_config/context/spring-*.xml"})
 @TransactionConfiguration(transactionManager="transactionManager")
 public class BaseContext {
-	
-	private static final Logger logger = LoggerFactory.getLogger();
+    
+    private static final Logger logger = LoggerFactory.getLogger();
 
-	@Autowired
-	protected ApplicationContext application;
-	
-	@Before
-	public void init(){
-		logger.debug("================== Test ApplicationContext init ===================");
-	}
-	
-	
+    @Autowired
+    protected ApplicationContext application;
+    
+    @Before
+    public void init(){
+        logger.debug("================== Test ApplicationContext init ===================");
+    }
+    
+    
 }

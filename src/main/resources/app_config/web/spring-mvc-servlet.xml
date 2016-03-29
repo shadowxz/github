@@ -1,122 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"  
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
-	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd 
-	http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
-	http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" >
-   	
-   	<!-- 激活Aspect自动代理 -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
-	
-	<context:component-scan base-package="com.sheep.web" use-default-filters="false">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
-	
-   	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.sheep.web.interceptor.CustomInterceptor" />
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
-	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
-		<mvc:message-converters register-defaults="true">
-			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
-			<!-- 方法直接返回字符串时，中文字符乱码的情况解决：
-					因为方法定义直接返回字符串时(Html或Json内容)，
-					调用的是StringHttpMessageConverter，
-					而此Converter默认编码是ISO-85591，需要重新设为UTF-8。
-			 -->
-			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-		    	<constructor-arg value="UTF-8" />
-			</bean>
-			
-			<!-- 将Jackson2HttpMessageConverter的默认格式化输出为true -->
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"  
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+    http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+    http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd 
+    http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop-4.0.xsd" >
+       
+       <!-- 激活Aspect自动代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    
+    <context:component-scan base-package="com.sheep.web" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    
+       <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.sheep.web.interceptor.CustomInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+    
+    <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
+        <mvc:message-converters register-defaults="true">
+            <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+            <!-- 方法直接返回字符串时，中文字符乱码的情况解决：
+                    因为方法定义直接返回字符串时(Html或Json内容)，
+                    调用的是StringHttpMessageConverter，
+                    而此Converter默认编码是ISO-85591，需要重新设为UTF-8。
+             -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8" />
+            </bean>
+            
+            <!-- 将Jackson2HttpMessageConverter的默认格式化输出为true -->
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="prettyPrint" value="true"/>
                 <property name="objectMapper">
                     <bean class="com.fasterxml.jackson.databind.ObjectMapper"></bean>
                 </property>
                 <!-- <property name="supportedMediaTypes">
-            		<list>
-            			<value>application/json; charset=UTF-8</value>
-                		<value>text/html;charset=UTF-8</value>
-            		</list>
-        		</property> -->
+                    <list>
+                        <value>application/json; charset=UTF-8</value>
+                        <value>text/html;charset=UTF-8</value>
+                    </list>
+                </property> -->
             </bean>
             
             <!-- 使用XML格式输出数据 -->
             <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
-		        <property name="supportedMediaTypes" value="application/xml"></property>
-			</bean>
-			
-			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
-			
-		</mvc:message-converters>
-	</mvc:annotation-driven>
-	
-		
+                <property name="supportedMediaTypes" value="application/xml"></property>
+            </bean>
+            
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+        
     <!-- REST中根据URL后缀自动判定Content-Type及相应的View -->
     <!-- 1、检查扩展名(如：my.pdf);2、检查Parameter(如：my?format=pdf);3、检查AcceptHeader -->
-	<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
-	    <property name="mediaTypes" >
-	        <map>
-	        	<entry key="html" value="text/html" />
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="mediaTypes" >
+            <map>
+                <entry key="html" value="text/html" />
                 <entry key="xml" value="application/xml"/>
                 <entry key="json" value="application/json"/>
                 <entry key="jsonp" value="application/javascript"/>
                 <entry key="png" value="image/png"/>
             </map>
-	    </property>
-	    <!-- 默认contentType; -->
-	    <property name="defaultContentType" value="text/html" />
-	    <!-- 检查AcceptHeader; -->
+        </property>
+        <!-- 默认contentType; -->
+        <property name="defaultContentType" value="text/html" />
+        <!-- 检查AcceptHeader; -->
         <property name="ignoreAcceptHeader" value="true"/>
         <!-- 检查Parameter(如：my?format=pdf); -->
         <property name="favorParameter" value="true" />
         <!-- 检查扩展名(如：my.pdf); -->
         <property name="favorPathExtension" value="true"/>
-	</bean>
-	
-	<!-- 默认的视图解析器 在上边的解析错误时使用默认HTML -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="order" value="1" />
-		<property name="contentType" value="text/html" />
-		<property name="prefix" value="/WEB-INF/pages/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
-	
-	<!-- 使用XML视图解析器,输出VIEW -->
-	<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
-		<property name="marshaller">
-			<bean class="org.springframework.oxm.xstream.XStreamMarshaller" >
-				<property name="autodetectAnnotations" value="true" />
-			</bean>
-		</property>
-	</bean>
-	
-	<!-- 上传文件的解析器 -->
-	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="defaultEncoding" value="utf-8" />
-		<property name="maxUploadSize" value="10485760000" />
-		<property name="maxInMemorySize" value="40960" />
-	</bean>
-	
-	<!-- 页面日期类型绑定转换到java的日期类型 -->
-	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">  
-		<property name="converters">
-	    	<list>
-	    		<bean class="com.sheep.web.converter.TimestampConverter" />  
-	        	<bean class="com.sheep.web.converter.SqlDateConverter" />
-	        	<bean class="com.sheep.web.converter.DateConverter" />  
-	    	</list>
-		</property>
-	</bean>
+    </bean>
+    
+    <!-- 默认的视图解析器 在上边的解析错误时使用默认HTML -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="order" value="1" />
+        <property name="contentType" value="text/html" />
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+    
+    <!-- 使用XML视图解析器,输出VIEW -->
+    <bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+        <property name="marshaller">
+            <bean class="org.springframework.oxm.xstream.XStreamMarshaller" >
+                <property name="autodetectAnnotations" value="true" />
+            </bean>
+        </property>
+    </bean>
+    
+    <!-- 上传文件的解析器 -->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8" />
+        <property name="maxUploadSize" value="10485760000" />
+        <property name="maxInMemorySize" value="40960" />
+    </bean>
+    
+    <!-- 页面日期类型绑定转换到java的日期类型 -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">  
+        <property name="converters">
+            <list>
+                <bean class="com.sheep.web.converter.TimestampConverter" />  
+                <bean class="com.sheep.web.converter.SqlDateConverter" />
+                <bean class="com.sheep.web.converter.DateConverter" />  
+            </list>
+        </property>
+    </bean>
 </beans>

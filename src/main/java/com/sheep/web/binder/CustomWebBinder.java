@@ -11,15 +11,15 @@ import com.sheep.common.log.LoggerFactory;
 
 @Component
 public class CustomWebBinder implements WebBindingInitializer {
-	
-	private static final Logger logger = LoggerFactory.getLogger();
-	
-	public CustomWebBinder(){
-		logger.info("CustomWebBinder constructor invoked ...");
-	}
-	
-	public void initBinder(WebDataBinder binder, WebRequest request) {
-			
-	}
+    
+    private static final Logger logger = LoggerFactory.getLogger();
+    
+    public CustomWebBinder(){
+        logger.info("CustomWebBinder constructor invoked ...");
+    }
+    
+    public void initBinder(WebDataBinder binder, WebRequest request) {
+            
+    }
 
 }

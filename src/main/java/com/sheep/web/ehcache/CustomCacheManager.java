@@ -12,19 +12,19 @@ import com.sheep.common.log.LoggerFactory;
 
 @Component
 public class CustomCacheManager {
-	
-	private static final Logger logger = LoggerFactory.getLogger();
-	
-	private static Cache ehCache;
-	
-	@Resource
-	public void setEhCache(Cache ehCache){
-		CustomCacheManager.ehCache = ehCache;
-	}
-	
-	@PostConstruct
-	public void init(){
-		logger.trace("CustomCacheManager init() ... " + CustomCacheManager.ehCache);
-	}
-	
+    
+    private static final Logger logger = LoggerFactory.getLogger();
+    
+    private static Cache ehCache;
+    
+    @Resource
+    public void setEhCache(Cache ehCache){
+        CustomCacheManager.ehCache = ehCache;
+    }
+    
+    @PostConstruct
+    public void init(){
+        logger.trace("CustomCacheManager init() ... " + CustomCacheManager.ehCache);
+    }
+    
 }

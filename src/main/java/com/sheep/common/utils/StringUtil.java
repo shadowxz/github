@@ -47,30 +47,30 @@ public class StringUtil {
     }
         
 
-	 public static boolean isPhone(String phone){
-	        Pattern pattern = Pattern.compile("^1\\d{10}$");
-	        Matcher matcher = pattern.matcher(phone);
-	        
-	        if (matcher.matches()) {
-	            return true;
-	        }
-	        return false;
-	    }
-	    public static boolean isEmail(String email){
-	        Pattern pattern = Pattern.compile("^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$");
-	        Matcher matcher = pattern.matcher(email);
-	        
-	        if (matcher.matches()) {
-	            return true;
-	        }
-	        return false;
-	    }
-	    
-	    public static String getUuid(){
-	    	return UUID.randomUUID().toString().replaceAll("-","");
-	    }
-	    
-	    
+     public static boolean isPhone(String phone){
+            Pattern pattern = Pattern.compile("^1\\d{10}$");
+            Matcher matcher = pattern.matcher(phone);
+            
+            if (matcher.matches()) {
+                return true;
+            }
+            return false;
+        }
+        public static boolean isEmail(String email){
+            Pattern pattern = Pattern.compile("^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$");
+            Matcher matcher = pattern.matcher(email);
+            
+            if (matcher.matches()) {
+                return true;
+            }
+            return false;
+        }
+        
+        public static String getUuid(){
+            return UUID.randomUUID().toString().replaceAll("-","");
+        }
+        
+        
     /* ============================================================================ */
     /* 常量和singleton。 */
     /* ============================================================================ */

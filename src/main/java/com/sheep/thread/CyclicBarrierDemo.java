@@ -24,105 +24,105 @@ import com.sheep.common.log.LoggerFactory;
  * @since     [产品/模块版本]
  */
 public class CyclicBarrierDemo {
-	
-	private static final Logger logger = LoggerFactory.getLogger();
-	private static final int FINISH_LINE = 75;
-	private List<Horse> horses = new ArrayList<Horse>();
-	private ExecutorService es = Executors.newCachedThreadPool();
-	private CyclicBarrier barrier;
-	
-	public CyclicBarrierDemo(int nHorses, final int pause) {
-		
-		barrier = new CyclicBarrier(nHorses, new Runnable() {
-			public void run() {
-				
-				StringBuilder sb = new StringBuilder();
+    
+    private static final Logger logger = LoggerFactory.getLogger();
+    private static final int FINISH_LINE = 75;
+    private List<Horse> horses = new ArrayList<Horse>();
+    private ExecutorService es = Executors.newCachedThreadPool();
+    private CyclicBarrier barrier;
+    
+    public CyclicBarrierDemo(int nHorses, final int pause) {
+        
+        barrier = new CyclicBarrier(nHorses, new Runnable() {
+            public void run() {
+                
+                StringBuilder sb = new StringBuilder();
 
-				for (int i = 0; i < FINISH_LINE; i++) {
-					sb.append("=");
-				}
+                for (int i = 0; i < FINISH_LINE; i++) {
+                    sb.append("=");
+                }
 
-				logger.debug(sb.toString());
+                logger.debug(sb.toString());
 
-				for (Horse horse : horses) {
-					logger.debug(horse.tracks());
-				}
+                for (Horse horse : horses) {
+                    logger.debug(horse.tracks());
+                }
 
-				for (Horse horse : horses) {
-					if (horse.getStrides() > FINISH_LINE) {
-						logger.debug(horse + "won!");
-						es.shutdownNow();
-						return;
-					}
-				}
+                for (Horse horse : horses) {
+                    if (horse.getStrides() > FINISH_LINE) {
+                        logger.debug(horse + "won!");
+                        es.shutdownNow();
+                        return;
+                    }
+                }
 
-				try {
-					TimeUnit.MILLISECONDS.sleep(pause);
-				} catch (Exception e) {
-					logger.debug("barrier-action sleep interrupted ...");
-				}
+                try {
+                    TimeUnit.MILLISECONDS.sleep(pause);
+                } catch (Exception e) {
+                    logger.debug("barrier-action sleep interrupted ...");
+                }
 
-			}
-		});
-		
-		for (int i = 0; i < nHorses; i++) {
-			Horse horse = new Horse(barrier);
-			horses.add(horse);
-			es.execute(horse);
-		}
-		
-	}
-	
-	public static void main(String[] args) {
-		int nHorses = 75;
-		int pause = 200;
-		new CyclicBarrierDemo(nHorses, pause);
-	}
-	
+            }
+        });
+        
+        for (int i = 0; i < nHorses; i++) {
+            Horse horse = new Horse(barrier);
+            horses.add(horse);
+            es.execute(horse);
+        }
+        
+    }
+    
+    public static void main(String[] args) {
+        int nHorses = 75;
+        int pause = 200;
+        new CyclicBarrierDemo(nHorses, pause);
+    }
+    
 }
 
 
 class Horse implements Runnable {
-	
-	private static int counter = 0;
-	private final int id = counter++;
-	private int strides = 0;
-	private static Random rand = new Random();
-	private static CyclicBarrier barrier;
-	
-	public Horse(CyclicBarrier barrier) {
-		Horse.barrier = barrier;
-	}
-	
-	public synchronized int getStrides() {
-		return strides;
-	}
-	
-	public void run() {
-		try {
-			while (!Thread.interrupted()) {
-				synchronized (this) {
-					strides += rand.nextInt(3);
-				}
-				barrier.await();
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	public String toString() {
-		return "Horse " + id + " ";
-	}
-	
-	public String tracks() {
-		int a = getStrides();
-		StringBuilder sb = new StringBuilder("" + a);
-		for (int i = 0; i < a; i++) {
-			sb.append("*");
-		}
-		sb.append(id);
-		return sb.toString();
-	}
-	
+    
+    private static int counter = 0;
+    private final int id = counter++;
+    private int strides = 0;
+    private static Random rand = new Random();
+    private static CyclicBarrier barrier;
+    
+    public Horse(CyclicBarrier barrier) {
+        Horse.barrier = barrier;
+    }
+    
+    public synchronized int getStrides() {
+        return strides;
+    }
+    
+    public void run() {
+        try {
+            while (!Thread.interrupted()) {
+                synchronized (this) {
+                    strides += rand.nextInt(3);
+                }
+                barrier.await();
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public String toString() {
+        return "Horse " + id + " ";
+    }
+    
+    public String tracks() {
+        int a = getStrides();
+        StringBuilder sb = new StringBuilder("" + a);
+        for (int i = 0; i < a; i++) {
+            sb.append("*");
+        }
+        sb.append(id);
+        return sb.toString();
+    }
+    
 }

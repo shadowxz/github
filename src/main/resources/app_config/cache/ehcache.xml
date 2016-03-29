@@ -7,17 +7,17 @@
     <diskStore path="java.io.tmpdir" />
     
     <!-- 
-    	name:缓存名字；
-    	maxElementsInMemory:内存中最大缓存对象数；
-    	eternal:true表示对象永远不过期，此时会忽略timeToldleSeconds和timeToLiveSeconds属性，默认false；
-    	ovelowToDisk:true表示当内存缓存的对象数目达到了maxElementsInMemory界限后，
-    	会把溢出的对象写到disk。（对象必须实现Serializable接口）。
-    	diskSpoolBufferSizeMB:磁盘缓存区大小，默认30MB。每个Cache都应该有自己的一个缓存区。
-    	diskPersistent:是否缓存虚拟机，重启期数据；
-    	memoryStoreEvictionPolicy:清除缓存策略，LRU（最近最少使用，默认策略）、LFU（最近访问次数）、FIFO（先进先出）；
-    	
+        name:缓存名字；
+        maxElementsInMemory:内存中最大缓存对象数；
+        eternal:true表示对象永远不过期，此时会忽略timeToldleSeconds和timeToLiveSeconds属性，默认false；
+        ovelowToDisk:true表示当内存缓存的对象数目达到了maxElementsInMemory界限后，
+        会把溢出的对象写到disk。（对象必须实现Serializable接口）。
+        diskSpoolBufferSizeMB:磁盘缓存区大小，默认30MB。每个Cache都应该有自己的一个缓存区。
+        diskPersistent:是否缓存虚拟机，重启期数据；
+        memoryStoreEvictionPolicy:清除缓存策略，LRU（最近最少使用，默认策略）、LFU（最近访问次数）、FIFO（先进先出）；
+        
      -->
-   	
+       
     <defaultCache eternal="false"   
         maxElementsInMemory="1000" 
         overflowToDisk="false"   
@@ -25,7 +25,7 @@
         timeToIdleSeconds="0"  
         timeToLiveSeconds="600"   
         memoryStoreEvictionPolicy="LFU"></defaultCache>  
-  	
+      
     <cache name="baseCache"   
         eternal="false"   
         maxElementsInMemory="100"  
@@ -35,5 +35,5 @@
         timeToLiveSeconds="300"   
         memoryStoreEvictionPolicy="LFU"></cache>  
     
-  	
+      
 </ehcache>

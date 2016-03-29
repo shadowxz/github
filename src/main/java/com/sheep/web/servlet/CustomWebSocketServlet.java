@@ -11,38 +11,38 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/websocket")
 public class CustomWebSocketServlet {
 
-	@OnMessage
-	public void onMessage(String message, Session session) throws IOException,
-			InterruptedException {
+    @OnMessage
+    public void onMessage(String message, Session session) throws IOException,
+            InterruptedException {
 
-		// Print the client message for testing purposes
-		System.out.println("Received: " + message);
+        // Print the client message for testing purposes
+        System.out.println("Received: " + message);
 
-		// Send the first message to the client
-		session.getBasicRemote().sendText("This is the first server message");
+        // Send the first message to the client
+        session.getBasicRemote().sendText("This is the first server message");
 
-		// Send 3 messages to the client every 5 seconds
-		int sentMessages = 0;
-		while (sentMessages < 3) {
-			Thread.sleep(1000);
-			session.getBasicRemote().sendText(
-					"This is an intermediate server message. Count: "
-							+ sentMessages);
-			sentMessages++;
-		}
+        // Send 3 messages to the client every 5 seconds
+        int sentMessages = 0;
+        while (sentMessages < 3) {
+            Thread.sleep(1000);
+            session.getBasicRemote().sendText(
+                    "This is an intermediate server message. Count: "
+                            + sentMessages);
+            sentMessages++;
+        }
 
-		// Send a final message to the client
-		session.getBasicRemote().sendText("This is the last server message");
-	}
+        // Send a final message to the client
+        session.getBasicRemote().sendText("This is the last server message");
+    }
 
-	@OnOpen
-	public void onOpen() {
-		System.out.println("Client connected");
-	}
+    @OnOpen
+    public void onOpen() {
+        System.out.println("Client connected");
+    }
 
-	@OnClose
-	public void onClose() {
-		System.out.println("Connection closed");
-	}
+    @OnClose
+    public void onClose() {
+        System.out.println("Connection closed");
+    }
 
 }
