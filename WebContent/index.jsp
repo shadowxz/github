@@ -7,5 +7,7 @@
 </head>
 <body>
 	this is xsheep index.jsp ...
+	post:<%=request.getLocalPort() %><br/>
+	post:<%=session.getId() %><br/>
 </body>
 </html>

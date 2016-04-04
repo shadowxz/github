@@ -42,15 +42,15 @@ public class CyclicBarrierDemo {
 					sb.append("=");
 				}
 
-				logger.debug(sb.toString());
+				System.out.println(sb.toString());
 
 				for (Horse horse : horses) {
-					logger.debug(horse.tracks());
+					System.out.println(horse.tracks());
 				}
 
 				for (Horse horse : horses) {
 					if (horse.getStrides() > FINISH_LINE) {
-						logger.debug(horse + "won!");
+						System.out.println(horse + "won!");
 						es.shutdownNow();
 						return;
 					}
@@ -59,7 +59,7 @@ public class CyclicBarrierDemo {
 				try {
 					TimeUnit.MILLISECONDS.sleep(pause);
 				} catch (Exception e) {
-					logger.debug("barrier-action sleep interrupted ...");
+					System.out.println("barrier-action sleep interrupted ...");
 				}
 
 			}
@@ -74,8 +74,8 @@ public class CyclicBarrierDemo {
 	}
 	
 	public static void main(String[] args) {
-		int nHorses = 75;
-		int pause = 200;
+		int nHorses = 5;
+		int pause = 20;
 		new CyclicBarrierDemo(nHorses, pause);
 	}
 	
